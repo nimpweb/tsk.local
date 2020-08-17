@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #slider{
+        width:300px;
+        margin-left:20px;
+        height:10px;
+        background: black;
+        border-radius:10px;
+        margin-top:45px;
+        }
+        #item{
+        width:10px;
+        height:30px;
+        position:relative;
+        top:-10px;
+        left:15px;
+        background:yellow;
+        border-radius:10px;
+        border:1px solid black;
+        }
+        #result{
+        margin:20px;
+        }
+    </style>
+</head>
+<body>
+    
+    
+
+<div id="slider"><div id="item"></div></div>
+<div id="result">5%</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        var slider = document.getElementById('slider');
+        var item = slider.querySelector('#item');
+        var result = document.getElementById('result');
+        var sliderValue = result.innerText;
+
+        var sliderClientCoords = slider.getBoundingClientRect();
+        var sliderCoords = {};
+        sliderCoords.top = sliderClientCoords.top + pageYOffset;
+        sliderCoords.left = sliderClientCoords.left + pageXOffset;
+
+        item.onmousedown = function(e){
+            item.ondragstart = function() {
+            return false;
+        };
+            
+        var itemClientCoords = item.getBoundingClientRect();
+        var itemCoords = {};
+        itemCoords.top = itemClientCoords.top + pageYOffset;
+            itemCoords.left = itemClientCoords.left + pageXOffset;
+        
+        var right = slider.offsetWidth - item.offsetWidth;
+        
+        var shiftX = e.pageX - itemCoords.left;
+        
+        document.onmousemove = function(e){
+                var newLeft = e.pageX - sliderCoords.left - shiftX;
+            if(newLeft < 0) newLeft = 0;
+            if(newLeft > right) newLeft = right;
+            item.style.left = newLeft + 'px';
+            result.innerHTML = Math.round(newLeft / right * 100) + '%';
+        }
+        
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+            alert('Результат: '+sliderValue);
+        }
+        return false;
+        }
+    });
+    
+</script>
+</body>
+</html>

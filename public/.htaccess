@@ -1,0 +1,20 @@
+AddDefaultCharset utf-8
+
+Options +FollowSymLinks
+
+RewriteEngine On
+
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#RewriteCond %{HTTP_HOST} ^pay.rosvodokanal.ru [NC]
+#RewriteRule ^(.*)$ https://pay.rosvodokanal.ru/$1 [R=301,L]
+#RewriteRule .* – [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.php?$1 [L,QSA]
+
+php_flag register_globals off
+php_value register_globals off

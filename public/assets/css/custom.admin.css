@@ -1,0 +1,22 @@
+.sidebar .user-panel .background-overlay {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.sidebar .user-panel .image,
+.sidebar  .user-panel .info {
+    z-index: 11;
+    position: sticky;
+}
+
+.other-copy {
+    display: none;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

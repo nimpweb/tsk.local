@@ -1,0 +1,17 @@
+{
+  "autoload": {
+    "psr-4": {
+      "core\\": "core",
+      "app\\": "app",
+      "widget\\" : "app/widget"
+    }
+  },
+
+  "require": {
+    "gabordemooij/redbean": "dev-master",
+    "vlucas/valitron": "^1.4",
+    "swiftmailer/swiftmailer": "^5.4",
+    "phpoffice/phpspreadsheet": "^1.8",
+    "it-quasar/atol-online": "^4.0"
+  }
+}
